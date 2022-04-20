@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/criacao-quizz.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,13 +21,30 @@
 
 <body>
     <header>
-        <h1></h1>
+        <a href="index.html"><h1></h1></a>
     </header>
     <main>
+        <div class="criacao-quizz-chamada">
+            <p>Você não criou nenhum quizz ainda :(</p>
+            <a href="#" onclick="criarQuizzEtapa1()">Criar Quizz</a>
+        </div>
         <div class="lista-quizzes"></div>
         <div class="pagina-quizz"></div>
-        <div class="criacao-quizz"></div>
+        <div class="criacao-quizz none">
+            <div class="criacao-quizz-telas inicial">
+                <h3>Comece pelo começo</h3>
+                <form>
+                    <input type="text" placeholder="Titulo do seu quizz">
+                    <input type="url" placeholder="URL da imagem do seu quizz">
+                    <input type="number" placeholder="Quantidade de perguntas do quizz">
+                    <input type="number" placeholder="Quantidade de níveis do quizz">
+                    <input type="submit" value="Prosseguir para criar perguntas">
+                </form>
+            </div>
+        </div>
     </main>
+
+    <script src="scrips/criar-quizz.js"></script>
 </body>
 
 </html>
