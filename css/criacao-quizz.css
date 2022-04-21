@@ -26,12 +26,24 @@
 /*  */
 
 .criacao-quizz {
-    width: 80%;
+    width: 100%;
     /* min-height: calc(100% - 74px); */
     background-color: #fff;
     position: absolute;
     top: 140px;
-    right: 10%;
+}
+
+.criacao-quizz-telas {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.criacao-quizz-telas input {
+    margin: 0.75rem 0;
+    padding: 0.75rem 1.25rem;
+    font-size: 1.25rem;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
 }
 
 .criacao-quizz-telas h3 {
@@ -47,27 +59,57 @@
     align-items: center;
 }
 
-.criacao-quizz-telas input {
-    margin: 0.75rem 0;
-    padding: 0.75rem 1.25rem;
-    font-size: 1.25rem;
-    border: 1px solid #D1D1D1;
-    border-radius: 5px;
+.informacoes-basicas input {
+    width: 80%;
 }
 
-.criacao-quizz-telas input:not(:last-child) {
-    width: 60%;
-}
-
-.criacao-quizz-telas input:last-child {
+.criacao-input-submit {
     background-color: #EC362D;
     color: #fff;
     border-radius: 15px;
     border: none;
+    padding: 0.75rem 1.25rem;
+    margin: 1rem 0;
+    text-align: center;
+    font-size: 1rem;
 }
 
-.criacao-quizz-telas input:last-child:hover {
+.criacao-input-submit:hover {
     cursor: pointer;
+}
+
+/*  */
+
+.perguntas .pergunta {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.perguntas .pergunta input {
+    width: 100%;
+}
+
+.perguntas .pergunta p:not(:first-child) {
+    margin-top: 2rem;
+}
+
+.pergunta-titulo {
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pergunta-titulo:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.pergunta-titulo img {
+    width: 20px;
 }
 
 /*  */
@@ -76,19 +118,22 @@
     .criacao-quizz-chamada {
         width: 90%;
     }
-    
-    .criacao-quizz {
-        width: 90%;
-        right: 5%;
+
+    .criacao-quizz-telas {
+        width: 100%;
     }
 
-    .criacao-quizz-telas input:not(:last-child) {
-        width: 100%;
+    .perguntas .pergunta {
+        width: 90%;
+    }
+
+    .criacao-quizz-telas input {
+        width: 90%;
     }
 }
 
 @media (max-width:480px) {
-    .criacao-quizz-telas input:last-child {
+    .criacao-input-submit {
         width: 80%;
         font-size: 1rem;
     }

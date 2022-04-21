@@ -22,29 +22,60 @@
 
 <body>
     <header>
-        <a href="index.html"><h1></h1></a>
+        <a href="index.html">
+            <h1></h1>
+        </a>
     </header>
     <main>
         <div class="criacao-quizz-chamada">
             <p>Você não criou nenhum quizz ainda :(</p>
-            <a href="#" onclick="criarQuizzEtapa1()">Criar Quizz</a>
+            <a href="#" onclick="criarQuizz()">Criar Quizz</a>
         </div>
         <div class="lista-quizzes"></div>
         <div class="pagina-quizz"></div>
         <div class="criacao-quizz none">
-            <div class="criacao-quizz-telas inicial">
+            <div class="criacao-quizz-telas informacoes-basicas">
                 <h3>Comece pelo começo</h3>
                 <form>
-                    <input type="text" placeholder="Titulo do seu quizz">
-                    <input type="url" placeholder="URL da imagem do seu quizz">
-                    <input type="number" placeholder="Quantidade de perguntas do quizz">
-                    <input type="number" placeholder="Quantidade de níveis do quizz">
-                    <input type="submit" value="Prosseguir para criar perguntas">
+                    <input class="quizz-titulo" type="text" placeholder="Titulo do seu quizz">
+                    <input class="quizz-img-url" type="url" placeholder="URL da imagem do seu quizz">
+                    <input class="quizz-quatidade-perguntas" type="number"
+                        placeholder="Quantidade de perguntas do quizz(mín: 3)">
+                    <input class="quizz-quantidade-niveis" type="number" placeholder="Quantidade de níveis do quizz(mín: 2)">
+                    <button onclick="verificaInformacoesBasicas()" class="criacao-input-submit submit-info-basica">Prosseguir para
+                        criar perguntas</button>
+                </form>
+            </div>
+            <div class="criacao-quizz-telas perguntas none">
+                <h3>Crie suas perguntas</h3>
+                <form>
+                    <div class="pergunta">
+                        <p onclick="mostrarCamposPergunta(this)" class="pergunta-titulo">Pergunta 1 <img
+                                src="static/img/Vector.svg" /></p>
+                        <div class="none">
+                            <input type="text" placeholder="Texto da pergunta">
+                            <input type="text" placeholder="Cor de fundo da pergunta">
+                            <p>Resposta correta</p>
+                            <input type="text" placeholder="Resposta correta">
+                            <input type="url" placeholder="URL da imagem">
+                            <p>Respostas incorretas</p>
+                            <input type="text" placeholder="Resposta incorreta 1">
+                            <input type="url" placeholder="URL da imagem 1">
+                            <input type="text" placeholder="Resposta incorreta 2">
+                            <input type="url" placeholder="URL da imagem 2">
+                            <input type="text" placeholder="Resposta correta 3">
+                            <input type="url" placeholder="URL da imagem 3">
+                        </div>
+                    </div>
+                    <button class="criacao-input-submit">Prosseguir para criar perguntas</button>
                 </form>
             </div>
         </div>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="scripts/criar-quizz.js"></script>
     <script src="scripts/obter-quizzes.js"></script>
 </body>
