@@ -14,38 +14,14 @@ function criarQuizz() {
   telaCriacao.classList.remove("none");
 }
 
-/* VERIFICA SE A URL TEM EXTENSÃO DE IMAGEM */
-function verificaExtensoes(str) {
-  let extensoes = [
-    ".jpeg",
-    ".JPEG",
-    ".jpg",
-    ".JPG",
-    ".png",
-    ".PNG",
-    ".svg",
-    ".SVG",
-    ".ico",
-    ".ICO",
-    ".jfif",
-    ".JFIF",
-    ".gif",
-    ".GIF",
-    ".bmp",
-    ".BMP",
-    ".psd",
-    ".PSD",
-    ".exif",
-    ".EXIF",
-    "tiff",
-    ".TIFF",
-  ];
-  for (let i = 0; i < extensoes.length; i++) {
-    if (str.includes(extensoes[i])) {
-      return true;
-    }
+/* VERIFICA sSE UMA URL É VÁLIDA */
+function verificaUrl(str) {
+  var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+  if (!regex.test(str)) {
+    return false;
+  } else {
+    return true;
   }
-  return false;
 }
 
 /* VERIFICA INFORMAÇÕES DE QUIZZ BÁSICAS FORNECIDAS PELO USUÁRIO */
@@ -55,7 +31,7 @@ function verificaInformacoesBasicas() {
   let qtdPerguntas = document.querySelector(".quizz-quatidade-perguntas").value;
   let qtdNiveis = document.querySelector(".quizz-quantidade-niveis").value;
 
-  let urlValida = verificaExtensoes(img);
+  let urlValida = verificaUrl(img);
   let tituloValido = titulo.length >= 20;
   let qtdPerguntasValida = Number(qtdPerguntas) >= 3;
   let qtdNiveisValida = Number(qtdNiveis) >= 2;
