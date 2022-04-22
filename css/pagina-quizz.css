@@ -69,14 +69,23 @@
     align-items: center;
 }
 
+.pg-qz-container-respostas{
+    width: 100%;
+    height: 50%;
+    display: flex;
+}
+
 .pg-qz-resposta{
     width: 45%;
-    height: 50%;
+    height: 80%;
     margin: 10px 10px;
 }
 
 .pg-qz-respostas img{
-    height: 80%;
+    height: 100%;
     width: 100%;
     object-fit: cover;
 }
+
+
+
