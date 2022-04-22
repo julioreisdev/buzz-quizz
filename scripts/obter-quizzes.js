@@ -45,6 +45,9 @@ function carregarQuizzesErro(erro){
 function clicarNoQuizz(quizzClicado){
     let idClicado = Number(quizzClicado.querySelector(".quizz-id").innerHTML);
     buscarApenasUmQuizz(idClicado);
+
+    document.querySelector(".criacao-quizz-chamada").classList.toggle("none");
+    document.querySelector(".todos-quizzes").classList.toggle("none");
 }
 
 buscarTodosQuizzes();
