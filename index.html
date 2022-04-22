@@ -23,12 +23,14 @@
 
 <body>
     <header>
-        <a href="index.html"><h1></h1></a>
+        <a href="index.html">
+            <h1></h1>
+        </a>
     </header>
     <main>
         <div class="criacao-quizz-chamada">
             <p>Você não criou nenhum quizz ainda :(</p>
-            <a href="#" onclick="criarQuizzEtapa1()">Criar Quizz</a>
+            <a href="#" onclick="criarQuizz()">Criar Quizz</a>
         </div>
         <div class="todos-quizzes">
             <p>Todos os Quizzes</p>
@@ -88,14 +90,26 @@
             </div>
         </div>
         <div class="criacao-quizz none">
-            <div class="criacao-quizz-telas inicial">
+            <div class="criacao-quizz-telas informacoes-basicas">
                 <h3>Comece pelo começo</h3>
                 <form>
-                    <input type="text" placeholder="Titulo do seu quizz">
-                    <input type="url" placeholder="URL da imagem do seu quizz">
-                    <input type="number" placeholder="Quantidade de perguntas do quizz">
-                    <input type="number" placeholder="Quantidade de níveis do quizz">
-                    <input type="submit" value="Prosseguir para criar perguntas">
+                    <input class="quizz-titulo" type="text" placeholder="Titulo do seu quizz">
+                    <input class="quizz-img-url" type="url" placeholder="URL da imagem do seu quizz">
+                    <input class="quizz-quatidade-perguntas" type="number"
+                        placeholder="Quantidade de perguntas do quizz(mín: 3)">
+                    <input class="quizz-quantidade-niveis" type="number" placeholder="Quantidade de níveis do quizz(mín: 2)">
+                    <a onclick="verificaInformacoesBasicas()" class="criacao-input-submit botao-submit">Prosseguir para
+                        criar perguntas</a>
+                </form>
+            </div>
+            <div class="criacao-quizz-telas perguntas none">
+                <h3>Crie suas perguntas</h3>
+                <form>
+                </form>
+            </div>
+            <div class="criacao-quizz-telas niveis none">
+                <h3>Agora, decida os níveis</h3>
+                <form>
                 </form>
             </div>
         </div>
