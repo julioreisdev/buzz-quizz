@@ -2,9 +2,11 @@ let telaChamada = document.querySelector(".criacao-quizz-chamada");
 let telaCriacao = document.querySelector(".criacao-quizz");
 let telaInformacoesBasicas = document.querySelector(".informacoes-basicas");
 let telaCadastroPerguntas = document.querySelector(".perguntas");
+let telaCadastroNiveis = document.querySelector(".niveis");
 
 let todosQuizzes = document.querySelector(".todos-quizzes");
 
+let totalNiveis;
 let totalPerguntas;
 
 /* LIBERA TELA CRIAR QUIZZ */
@@ -16,7 +18,8 @@ function criarQuizz() {
 
 /* VERIFICA SE UMA URL É VÁLIDA */
 function verificaUrl(str) {
-  var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+  var regex =
+    /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
   if (!regex.test(str)) {
     return false;
   } else {
@@ -30,6 +33,7 @@ function verificaInformacoesBasicas() {
   let img = document.querySelector(".quizz-img-url").value;
   let qtdPerguntas = document.querySelector(".quizz-quatidade-perguntas").value;
   let qtdNiveis = document.querySelector(".quizz-quantidade-niveis").value;
+  totalNiveis = qtdNiveis;
 
   let urlValida = verificaUrl(img);
   let tituloValido = titulo.length >= 20 && titulo.length <= 65;
@@ -49,12 +53,12 @@ function renderizarCadastroPerguntas() {
   telaInformacoesBasicas.classList.add("none");
   telaCadastroPerguntas.classList.remove("none");
 
-  let camposCadastroPerguntas = telaCadastroPerguntas.querySelector('form');
+  let camposCadastroPerguntas = telaCadastroPerguntas.querySelector("form");
 
   for (let i = 1; i <= totalPerguntas; i++) {
     camposCadastroPerguntas.innerHTML += `
     <div class="pergunta">
-      <p onclick="mostrarCamposPergunta(this)" class="pergunta-titulo">Pergunta ${i} <img src="static/img/Vector.svg" /></p>
+      <p onclick="toggleTela(this)" class="pergunta-titulo">Pergunta ${i} <img src="static/img/Vector.svg" /></p>
       <div class="none">
           <input class="texto-pergunta" type="text" placeholder="Texto da pergunta" required>
           <input class="cor-fundo-pergunta" type="text" placeholder="Cor de fundo da pergunta" required>
@@ -72,17 +76,17 @@ function renderizarCadastroPerguntas() {
     </div>
     `;
   }
-  camposCadastroPerguntas.innerHTML += `<button onclick="verificarCamposPergunta()" class="criacao-input-submit botao-submit">Prosseguir para criar níveis</button>`;
+  camposCadastroPerguntas.innerHTML += `<a onclick="verificarCamposPergunta()" class="criacao-input-submit botao-submit">Prosseguir para criar níveis</a>`;
 }
 
 /* EFEITO DE MOSTRAR E ESCONDER COMPOS DE PERGUNTA */
-function mostrarCamposPergunta(elemento) {
+function toggleTela(elemento) {
   let campos = elemento.parentNode.querySelector("div");
   campos.classList.toggle("none");
 }
 
 function verificaTextoPergunta() {
-  let perguntas = document.querySelectorAll('.texto-pergunta');
+  let perguntas = document.querySelectorAll(".texto-pergunta");
   for (let i = 0; i < perguntas.length; i++) {
     if (perguntas[i].value.length < 20) {
       return false;
@@ -92,12 +96,12 @@ function verificaTextoPergunta() {
 }
 
 function verificaFormatoCor() {
-  let hexadecimais = '0123456789abcdef'
-  let cores = document.querySelectorAll('.cor-fundo-pergunta');
+  let hexadecimais = "0123456789abcdef";
+  let cores = document.querySelectorAll(".cor-fundo-pergunta");
 
   for (let i = 0; i < cores.length; i++) {
     let cor = cores[i];
-    if (cor.value.length !== 7 || cor.value[0] !== '#') {
+    if (cor.value.length !== 7 || cor.value[0] !== "#") {
       return false;
     }
     for (let j = 1; j < cor.value.length; j++) {
@@ -110,11 +114,11 @@ function verificaFormatoCor() {
 }
 
 function verificarTextoResposta() {
-  let respostas = document.querySelectorAll('.texto-resposta');
+  let respostas = document.querySelectorAll(".texto-resposta");
 
   for (let i = 0; i < respostas.length; i++) {
     let resposta = respostas[i];
-    if (resposta.value === '') {
+    if (resposta.value === "") {
       return false;
     }
   }
@@ -122,7 +126,7 @@ function verificarTextoResposta() {
 }
 
 function verificaImgs() {
-  let imgs = document.querySelectorAll('.img-obrigatoria');
+  let imgs = document.querySelectorAll(".img-obrigatoria");
   for (let i = 0; i < imgs.length; i++) {
     let img = imgs[i];
     if (verificaUrl(img.value) === false) {
@@ -133,16 +137,16 @@ function verificaImgs() {
 }
 
 function verificaRespostasIncorretasOpcionais() {
-  let respostas = document.querySelectorAll('.resposta-incorreta-opcional');
-  let imgs = document.querySelectorAll('.img-incorreta-opcional');
+  let respostas = document.querySelectorAll(".resposta-incorreta-opcional");
+  let imgs = document.querySelectorAll(".img-incorreta-opcional");
 
   let status = [];
 
   for (let i = 0; i < respostas.length; i++) {
     let resposta = respostas[i];
     let img = imgs[i];
-    if (resposta.value !== '' || img.value !== '') {
-      status.push(resposta.value !== '' && verificaUrl(img.value));
+    if (resposta.value !== "" || img.value !== "") {
+      status.push(resposta.value !== "" && verificaUrl(img.value));
     }
   }
 
@@ -154,6 +158,26 @@ function verificaRespostasIncorretasOpcionais() {
   return true;
 }
 
+/*  */
+function cadastroNiveis() {
+  let camposCadastroNiveis = telaCadastroNiveis.querySelector("form");
+
+  for (let i = 1; i <= totalNiveis; i++) {
+    camposCadastroNiveis.innerHTML += `
+    <div class="nivel">
+      <p onclick="toggleTela(this)" class="nivel-titulo">Nível ${i} <img src="static/img/Vector.svg" /></p>
+      <div class="none">
+          <input class="texto-titulo-nivel" type="text" placeholder="Título do nível" required>
+          <input class="porcentagem-nivel" type="text" placeholder="% de acerto mínima" required>
+          <input class="url-img-nivel" type="url" placeholder="URL da imagem do nível" required>
+          <input class="descricao-nivel" type="text" placeholder="Descrição do nível" required>
+      </div>
+    </div>
+    `;
+  }
+  camposCadastroNiveis.innerHTML += `<a onclick="verificarCamposNiveis()" class="criacao-input-submit botao-submit">Finalizar Quizz</a>`;
+}
+
 function verificarCamposPergunta() {
   let textoPerguntaValido = verificaTextoPergunta();
   let corValida = verificaFormatoCor();
@@ -161,11 +185,18 @@ function verificarCamposPergunta() {
   let respostasIncorretasOpcionais = verificaRespostasIncorretasOpcionais();
   let imgObrigatoriasValidas = verificaImgs();
 
-  if (textoPerguntaValido && corValida && respostaValida && respostasIncorretasOpcionais && imgObrigatoriasValidas) {
-    console.log('Tá ok');
-  }
-  else {
-    alert('Preencha os dados corretamente!');
+  if (
+    textoPerguntaValido &&
+    corValida &&
+    respostaValida &&
+    respostasIncorretasOpcionais &&
+    imgObrigatoriasValidas
+  ) {
+    telaCadastroPerguntas.classList.add("none");
+    telaCadastroNiveis.classList.remove("none");
+    cadastroNiveis();
+  } else {
+    alert("Preencha os dados corretamente!");
   }
 }
 
