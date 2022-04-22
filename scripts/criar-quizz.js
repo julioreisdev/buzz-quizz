@@ -14,7 +14,7 @@ function criarQuizz() {
   telaCriacao.classList.remove("none");
 }
 
-/* VERIFICA sSE UMA URL É VÁLIDA */
+/* VERIFICA SE UMA URL É VÁLIDA */
 function verificaUrl(str) {
   var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
   if (!regex.test(str)) {
@@ -32,7 +32,7 @@ function verificaInformacoesBasicas() {
   let qtdNiveis = document.querySelector(".quizz-quantidade-niveis").value;
 
   let urlValida = verificaUrl(img);
-  let tituloValido = titulo.length >= 20;
+  let tituloValido = titulo.length >= 20 && titulo.length <= 65;
   let qtdPerguntasValida = Number(qtdPerguntas) >= 3;
   let qtdNiveisValida = Number(qtdNiveis) >= 2;
 
@@ -56,29 +56,117 @@ function renderizarCadastroPerguntas() {
     <div class="pergunta">
       <p onclick="mostrarCamposPergunta(this)" class="pergunta-titulo">Pergunta ${i} <img src="static/img/Vector.svg" /></p>
       <div class="none">
-          <input type="text" placeholder="Texto da pergunta" required>
-          <input type="text" placeholder="Cor de fundo da pergunta" required>
+          <input class="texto-pergunta" type="text" placeholder="Texto da pergunta" required>
+          <input class="cor-fundo-pergunta" type="text" placeholder="Cor de fundo da pergunta" required>
           <p>Resposta correta</p>
-          <input type="text" placeholder="Resposta correta" required>
-          <input type="url" placeholder="URL da imagem" required>
+          <input class="texto-resposta" type="text" placeholder="Resposta correta" required>
+          <input class="img-obrigatoria" type="url" placeholder="URL da imagem" required>
           <p>Respostas incorretas</p>
-          <input type="text" placeholder="Resposta incorreta 1" required>
-          <input type="url" placeholder="URL da imagem 1" required>
-          <input type="text" placeholder="Resposta incorreta 2">
-          <input type="url" placeholder="URL da imagem 2">
-          <input type="text" placeholder="Resposta correta 3">
-          <input type="url" placeholder="URL da imagem 3">
+          <input class="texto-resposta" type="text" placeholder="Resposta incorreta 1(Obrigatório)" required>
+          <input class="img-obrigatoria" type="url" placeholder="URL da imagem 1 (Obrigatório)" required>
+          <input class="resposta-incorreta-opcional" type="text" placeholder="Resposta incorreta 2">
+          <input class="img-incorreta-opcional" type="url" placeholder="URL da imagem 2">
+          <input class="resposta-incorreta-opcional" type="text" placeholder="Resposta correta 3">
+          <input class="img-incorreta-opcional" type="url" placeholder="URL da imagem 3">
       </div>
     </div>
     `;
   }
-  camposCadastroPerguntas.innerHTML += `<button class="criacao-input-submit botao-submit">Prosseguir para criar níveis</button>`;
+  camposCadastroPerguntas.innerHTML += `<button onclick="verificarCamposPergunta()" class="criacao-input-submit botao-submit">Prosseguir para criar níveis</button>`;
 }
 
 /* EFEITO DE MOSTRAR E ESCONDER COMPOS DE PERGUNTA */
 function mostrarCamposPergunta(elemento) {
   let campos = elemento.parentNode.querySelector("div");
   campos.classList.toggle("none");
+}
+
+function verificaTextoPergunta() {
+  let perguntas = document.querySelectorAll('.texto-pergunta');
+  for (let i = 0; i < perguntas.length; i++) {
+    if (perguntas[i].value.length < 20) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function verificaFormatoCor() {
+  let hexadecimais = '0123456789abcdef'
+  let cores = document.querySelectorAll('.cor-fundo-pergunta');
+
+  for (let i = 0; i < cores.length; i++) {
+    let cor = cores[i];
+    if (cor.value.length !== 7 || cor.value[0] !== '#') {
+      return false;
+    }
+    for (let j = 1; j < cor.value.length; j++) {
+      if (hexadecimais.includes(cor.value[j]) === false) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+function verificarTextoResposta() {
+  let respostas = document.querySelectorAll('.texto-resposta');
+
+  for (let i = 0; i < respostas.length; i++) {
+    let resposta = respostas[i];
+    if (resposta.value === '') {
+      return false;
+    }
+  }
+  return true;
+}
+
+function verificaImgs() {
+  let imgs = document.querySelectorAll('.img-obrigatoria');
+  for (let i = 0; i < imgs.length; i++) {
+    let img = imgs[i];
+    if (verificaUrl(img.value) === false) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function verificaRespostasIncorretasOpcionais() {
+  let respostas = document.querySelectorAll('.resposta-incorreta-opcional');
+  let imgs = document.querySelectorAll('.img-incorreta-opcional');
+
+  let status = [];
+
+  for (let i = 0; i < respostas.length; i++) {
+    let resposta = respostas[i];
+    let img = imgs[i];
+    if (resposta.value !== '' || img.value !== '') {
+      status.push(resposta.value !== '' && verificaUrl(img.value));
+    }
+  }
+
+  for (let k = 0; k < status.length; k++) {
+    if (status[k] === false) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function verificarCamposPergunta() {
+  let textoPerguntaValido = verificaTextoPergunta();
+  let corValida = verificaFormatoCor();
+  let respostaValida = verificarTextoResposta();
+  let respostasIncorretasOpcionais = verificaRespostasIncorretasOpcionais();
+  let imgObrigatoriasValidas = verificaImgs();
+
+  if (textoPerguntaValido && corValida && respostaValida && respostasIncorretasOpcionais && imgObrigatoriasValidas) {
+    console.log('Tá ok');
+  }
+  else {
+    alert('Preencha os dados corretamente!');
+  }
 }
 
 /* PREVENINDO COMPORTAMENTOS PADRÕES */
