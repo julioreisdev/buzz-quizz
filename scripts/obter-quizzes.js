@@ -48,6 +48,8 @@ function clicarNoQuizz(quizzClicado){
 
     document.querySelector(".criacao-quizz-chamada").classList.toggle("none");
     document.querySelector(".todos-quizzes").classList.toggle("none");
+
+    document.querySelector(".pagina-quizz").classList.toggle("none");
 }
 
 buscarTodosQuizzes();
