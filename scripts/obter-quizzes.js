@@ -1,6 +1,7 @@
 let todosOsQuizzes;
 let quizzUnico;
 
+
 function buscarTodosQuizzes(){
     promise = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
     promise.then(carregarTodosQuizzes);
@@ -35,6 +36,7 @@ function carregarTodosQuizzes(todosOsQuizzes){
 function carregarUnicoQuizz(quizzUnico){
     quizzUnico = quizzUnico.data;
     console.log(quizzUnico);
+    carregarQuizz(quizzUnico);
 }
 
 function carregarQuizzesErro(erro){
