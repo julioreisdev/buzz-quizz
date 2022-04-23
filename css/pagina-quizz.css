@@ -5,6 +5,11 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    overflow-anchor: none !important;
+    scroll-snap-stop: normal !important;
+    overscroll-behavior: unset !important;
+    scroll-behavior: unset !important;
+
 }
 
 .banner-quizz{
@@ -61,6 +66,10 @@
     color: white;
 }
 
+.pg-qz-container-pergunta-clicado{
+    background-color: #434CA0;
+}
+
 .pg-qz-respostas{
     height: 80%;
     background-color: white;
@@ -84,6 +93,8 @@
 }
 
 
+
+
 .pg-qz-resposta{
     width: 50%;
     height: 80%;
@@ -104,7 +115,15 @@
 }
 
 .resposta-clicada{
+    opacity: 1;
+}
+
+.resposta-nao-clicada{
     opacity: 0.3;
+}
+
+.resposta-certa{
+    display: none;
 }
 
 .pg-qz-respostas img{
