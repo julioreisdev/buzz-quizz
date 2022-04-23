@@ -1,46 +1,49 @@
 let quizzClicado;
+let containerPerguntas;
 
 function carregarQuizz(quizzUnico){
     quizzClicado = quizzUnico;
 
+    document.querySelector(".pagina-quizz").innerHTML = "";
+    
     adicionaBanner(quizzClicado);
-    let i = 0;
+    
 
-    document.querySelector(".pg-qz-container-pergunta").innerHTML = `
-    <div class="pg-qz-pergunta">${quizzClicado.questions[i].title}
-    </div>
-    <div class="pg-qz-respostas">
-    </div>
-    `
+    for(let i = 0; i<quizzClicado.questions.length;i++)
+    {
+    console.log(i);
+    document.querySelector(".pagina-quizz").innerHTML += `
+    <div class="pg-qz-container-pergunta">
+    </div>`;
+    }
 
-    document.querySelector(".pg-qz-respostas").innerHTML = `
-        <div class="pg-qz-container-respostas1">
-            <div class="pg-qz-resposta" onclick="clicarResposta(this)">
-                <img src="https://http.cat/412.jpg" alt="">
-                <div class="pg-qz-resposta-titulo">Resposta 1</div>
-            </div>
-            <div class="pg-qz-resposta">
-                <img src="https://http.cat/412.jpg" alt="">
-                <div class="pg-qz-resposta-titulo">Resposta 2</div>
-            </div>
-        </div>
-        <div class="pg-qz-container-respostas2">
-            <div class="pg-qz-resposta">
-                <img src="https://http.cat/412.jpg" alt="">
-                <div class="pg-qz-resposta-titulo">Resposta 3</div>
-            </div>
-            <div class="pg-qz-resposta">
-                <img src="https://http.cat/412.jpg" alt="">
-                <div class="pg-qz-resposta-titulo">Resposta 4</div>
-            </div>
-        </div>`;
+    adicionaPerguntas(quizzClicado);
 
 
 
-    // for(i=0;i<quizzClicado.questions;i++)
-    // {
-        
-    // }
+    // document.querySelector(".pg-qz-respostas").innerHTML = `
+    //     <div class="pg-qz-container-respostas">
+    //         <div class="pg-qz-resposta" onclick="clicarResposta(this)">
+    //             <img src="${quizzClicado.questions[i].answers[0].image}" alt="">
+    //             <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[0].text}</div>
+    //         </div>
+    //         <div class="pg-qz-resposta">
+    //             <img src="${quizzClicado.questions[i].answers[1].image}" alt="">
+    //             <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[1].text}</div>
+    //         </div>
+    //     </div>
+    //     <div class="pg-qz-container-respostas">
+    //         <div class="pg-qz-resposta">
+    //             <img src="${quizzClicado.questions[i].answers[2].image}" alt="">
+    //             <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[2].text}</div>
+    //         </div>
+    //         <div class="pg-qz-resposta">
+    //             <img src="${quizzClicado.questions[i].answers[3].image}" alt="">
+    //             <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[3].text}</div>
+    //         </div>
+    //     </div>`;
+
+
 }
 
 function clicarResposta(respostaClicada){
@@ -50,7 +53,42 @@ function clicarResposta(respostaClicada){
 }
 
 function adicionaBanner(quizzClicado){
-    document.querySelector(".banner-quizz").innerHTML = `
+    document.querySelector(".pagina-quizz").innerHTML += `
+    <div class="banner-quizz">
     <img src="${quizzClicado.image}" alt="">
-    <span class="pagina-quizz-titulo">${quizzClicado.title}</span>`;
+    <span class="pagina-quizz-titulo">${quizzClicado.title}</span>
+    </div>`;
+}
+
+function adicionaPerguntas(quizzClicado){
+    containerPerguntas = document.querySelectorAll(".pg-qz-container-pergunta");
+    for(let i=0; i<quizzClicado.questions.length;i++)
+    {
+        containerPerguntas[i].innerHTML = `
+        <div class="pg-qz-pergunta style="background-color: ${quizzClicado.questions[i].color}">${quizzClicado.questions[i].title}
+        </div>
+        <div class="pg-qz-respostas">
+        <div class="pg-qz-container-respostas">
+        <div class="pg-qz-resposta" onclick="clicarResposta(this)">
+            <img src="${quizzClicado.questions[i].answers[0].image}" alt="">
+            <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[0].text}</div>
+        </div>
+        <div class="pg-qz-resposta">
+            <img src="${quizzClicado.questions[i].answers[1].image}" alt="">
+            <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[1].text}</div>
+        </div>
+        </div>
+        <div class="pg-qz-container-respostas">
+        <div class="pg-qz-resposta">
+            <img src="${quizzClicado.questions[i].answers[2].image}" alt="">
+            <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[2].text}</div>
+        </div>
+        <div class="pg-qz-resposta">
+            <img src="${quizzClicado.questions[i].answers[3].image}" alt="">
+            <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[3].text}</div>
+        </div>
+        </div>
+        </div>
+        `
+    }
 }

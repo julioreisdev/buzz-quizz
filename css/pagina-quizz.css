@@ -75,7 +75,7 @@
     margin-top: 5px;
 }
 
-.pg-qz-container-respostas1{
+.pg-qz-container-respostas{
     width: 100%;
     height: 50%;
     display: flex;
@@ -83,13 +83,6 @@
     justify-content: center;
 }
 
-.pg-qz-container-respostas2{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .pg-qz-resposta{
     width: 50%;
