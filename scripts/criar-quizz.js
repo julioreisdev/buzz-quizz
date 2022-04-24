@@ -8,6 +8,12 @@ let todosQuizzes = document.querySelector(".todos-quizzes");
 
 let totalNiveis;
 let totalPerguntas;
+let totalAlternativas = 1;
+
+let tituloQuizz;
+let imgQuizz;
+
+let questions = [];
 
 /* LIBERA TELA CRIAR QUIZZ */
 function criarQuizz() {
@@ -30,7 +36,11 @@ function verificaUrl(str) {
 /* VERIFICA INFORMAÇÕES DE QUIZZ BÁSICAS FORNECIDAS PELO USUÁRIO */
 function verificaInformacoesBasicas() {
   let titulo = document.querySelector(".quizz-titulo").value;
+  tituloQuizz = titulo;
+
   let img = document.querySelector(".quizz-img-url").value;
+  imgQuizz = img;
+
   let qtdPerguntas = document.querySelector(".quizz-quatidade-perguntas").value;
   let qtdNiveis = document.querySelector(".quizz-quantidade-niveis").value;
   totalNiveis = qtdNiveis;
@@ -63,7 +73,7 @@ function renderizarCadastroPerguntas() {
           <input class="texto-pergunta" type="text" placeholder="Texto da pergunta" required>
           <input class="cor-fundo-pergunta" type="text" placeholder="Cor de fundo da pergunta" required>
           <p>Resposta correta</p>
-          <input class="texto-resposta" type="text" placeholder="Resposta correta" required>
+          <input class="texto-resposta correta" type="text" placeholder="Resposta correta" required>
           <input class="img-obrigatoria" type="url" placeholder="URL da imagem" required>
           <p>Respostas incorretas</p>
           <input class="texto-resposta" type="text" placeholder="Resposta incorreta 1(Obrigatório)" required>
@@ -154,6 +164,7 @@ function verificaRespostasIncorretasOpcionais() {
     if (status[k] === false) {
       return false;
     }
+    totalAlternativas++;
   }
   return true;
 }
@@ -215,7 +226,7 @@ function verificaPorcentagemNiveis() {
   let nivelZero = false;
   for (let i = 0; i < porcentagens.length; i++) {
     let porcentagem = Number(porcentagens[i].value);
-    console.log(porcentagem)
+    console.log(porcentagem);
     if (porcentagem < 0 || porcentagem > 100) {
       return false;
     }
@@ -229,14 +240,106 @@ function verificaPorcentagemNiveis() {
   return false;
 }
 
+/*  */
+
+function pegarPerguntas() {
+  let perguntas = document.querySelectorAll("form .pergunta");
+  for (let i = 0; i < perguntas.length; i++) {
+    let pergunta = perguntas[i];
+    let inputs = pergunta.querySelectorAll("input");
+
+    let answer = {
+      text: '',
+      image: '',
+      isCorrectAnswer: false
+    };
+
+    let answer2 = {
+      text: '',
+      image: '',
+      isCorrectAnswer: false
+    };
+
+    let answer3 = {
+      text: '',
+      image: '',
+      isCorrectAnswer: false
+    };
+
+    let answer4 = {
+      text: '',
+      image: '',
+      isCorrectAnswer: false
+    };
+
+    let answers = [];
+
+    let question = {
+      title: "",
+      color: "",
+      answers
+    };
+
+    question.title = inputs[0].value;
+    question.color = inputs[1].value;
+
+    answer.text = inputs[2].value;
+    answer.image = inputs[3].value;
+    answer.isCorrectAnswer = true;
+    answers.push(answer);
+
+    answer2.text = inputs[4].value;
+    answer2.image = inputs[5].value;
+    answers.push(answer2);
+
+    if (inputs[6].value !== '') {
+      answer3.text = inputs[6].value;
+      answer3.image = inputs[7].value;
+      answers.push(answer3);
+    }
+    if (inputs[8].value !== '') {
+      answer4.text = inputs[8].value;
+      answer4.image = inputs[9].value;
+      answers.push(answer4);
+    }
+
+    questions.push(question);
+  }
+}
+
 function verificarCamposNivel() {
   let tituloNivel = verificaTamanhoTextos(".texto-titulo-nivel", 10);
   let porcentagemNivel = verificaPorcentagemNiveis();
   let imgUrlNivel = verificaImgs(".url-img-nivel");
   let descricaoNivel = verificaTamanhoTextos(".descricao-nivel", 30);
+  pegarPerguntas();
+
+  /*  */
+
+  let quizz = {
+    title: tituloQuizz,
+    image: imgQuizz,
+    questions,
+    levels: [
+      {
+        title: "Título do nível 1",
+        image: "https://http.cat/411.jpg",
+        text: "Descrição do nível 1",
+        minValue: 0,
+      },
+      {
+        title: "Título do nível 2",
+        image: "https://http.cat/412.jpg",
+        text: "Descrição do nível 2",
+        minValue: 50,
+      },
+    ],
+  };
+
+  /*  */
 
   if (tituloNivel && porcentagemNivel && imgUrlNivel && descricaoNivel) {
-    console.log("opa");
+    console.log(quizz);
   } else {
     alert("Preencha os dados corretamente!");
   }
