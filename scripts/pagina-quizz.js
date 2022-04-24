@@ -1,5 +1,6 @@
 let quizzClicado;
 let containerPerguntas;
+let containerRespostas;
 let containerSelecionado;
 let containerClicado;
 let respostaSelecionada;
@@ -19,7 +20,7 @@ function carregarQuizz(quizzUnico){
 
 function clicarResposta(respostaClicada){
 
-    containerClicado = respostaClicada.parentElement.parentElement.parentElement;
+    containerClicado = respostaClicada.parentElement.parentElement;
     let respostas = containerClicado.querySelectorAll(".pg-qz-resposta");
     let respostaCorreta;
 
@@ -117,10 +118,23 @@ function embaralharArray(array){
         array[randomIndex], array[currentIndex]];
     }
   
+    console.log("array embaralhado: " + array)
     return array;
 }
 
+function criarArray(tam){
+    let arr = [];
+
+    for(let i=0; i<tam; i++){
+        arr.push(i);
+    }
+    console.log("array: " + arr);
+    return arr;
+}
+
 function adicionaPerguntas(quizzClicado){
+    let qtdRespostas = 0;
+    let arr = [];
     //adiciona containers das perguntas
     for(let i = 0; i<quizzClicado.questions.length;i++)
     {
@@ -129,9 +143,7 @@ function adicionaPerguntas(quizzClicado){
     </div>`;
     }
 
-    //radomiza array de perguntas
-    let arr = [0,1,2,3];
-    embaralharArray(arr);
+
 
     //adiciona perguntas dentro dos containers
     containerPerguntas = document.querySelectorAll(".pg-qz-container-pergunta");
@@ -141,33 +153,26 @@ function adicionaPerguntas(quizzClicado){
         <div class="pg-qz-pergunta" style="background-color: ${quizzClicado.questions[i].color}">${quizzClicado.questions[i].title}
         </div>
         <div class="pg-qz-respostas">
-        <div class="pg-qz-container-respostas">
-        <div class="pg-qz-resposta" onclick="clicarResposta(this)">
-            <img src="${quizzClicado.questions[i].answers[arr[0]].image}" alt="">
-            <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[arr[0]].text}</div>
-            <div class="resposta-certa">${quizzClicado.questions[i].answers[arr[0]].isCorrectAnswer}</div>
-        </div>
-        <div class="pg-qz-resposta" onclick="clicarResposta(this)">
-            <img src="${quizzClicado.questions[i].answers[arr[1]].image}" alt="">
-            <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[arr[1]].text}</div>
-            <div class="resposta-certa">${quizzClicado.questions[i].answers[arr[1]].isCorrectAnswer}</div>
-        </div>
-        </div>
-        <div class="pg-qz-container-respostas">
-        <div class="pg-qz-resposta" onclick="clicarResposta(this)">
-            <img src="${quizzClicado.questions[i].answers[arr[2]].image}" alt="">
-            <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[arr[2]].text}</div>
-            <div class="resposta-certa">${quizzClicado.questions[i].answers[arr[2]].isCorrectAnswer}</div>
-        </div>
-        <div class="pg-qz-resposta" onclick="clicarResposta(this)">
-            <img src="${quizzClicado.questions[i].answers[arr[3]].image}" alt="">
-            <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[arr[3]].text}</div>
-            <div class="resposta-certa">${quizzClicado.questions[i].answers[arr[3]].isCorrectAnswer}</div>
-        </div>
-        </div>
         </div>
         `
+
+        qtdRespostas = quizzClicado.questions[i].answers.length;
+        arr = criarArray(qtdRespostas);
+        embaralharArray(arr);
+        containerRespostas = document.querySelectorAll(".pg-qz-respostas");
+        for(let j=0; j<quizzClicado.questions[i].answers.length;j++){
+
+            containerRespostas[i].innerHTML += `<div class="pg-qz-resposta" onclick="clicarResposta(this)">
+            <img src="${quizzClicado.questions[i].answers[arr[j]].image}" alt="">
+            <div class="pg-qz-resposta-titulo">${quizzClicado.questions[i].answers[arr[j]].text}</div>
+            <div class="resposta-certa">${quizzClicado.questions[i].answers[arr[j]].isCorrectAnswer}</div>
+        </div>`
+        }
+
+        arr = [];
     }
+
+
 
     containerSelecionado = containerPerguntas[contadorPergunta];
     document.body.scrollTop = document.documentElement.scrollTop = 0;
