@@ -25,7 +25,7 @@ function carregarTodosQuizzes(todosOsQuizzes){
     {
     listaTodosQuizzes.innerHTML += `
     <div class="quizz" onclick="clicarNoQuizz(this)"> 
-        <div class="quizz"> <img src="${todosOsQuizzes[i].image}" alt="">
+        <img src="${todosOsQuizzes[i].image}" alt="">
         <div class="quizz-id">${todosOsQuizzes[i].id}</div>
         <div class="texto-quizz">${todosOsQuizzes[i].title}</div> 
     </div>`

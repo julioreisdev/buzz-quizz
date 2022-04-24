@@ -21,7 +21,9 @@ function clicarResposta(respostaClicada){
 
     containerClicado = respostaClicada.parentElement.parentElement.parentElement;
     let respostas = containerClicado.querySelectorAll(".pg-qz-resposta");
-    let respostaCorreta = containerClicado.querySelector(".resposta-certa").parentElement;
+    let respostaCorreta;
+
+
 
     if(containerClicado === containerSelecionado){
         
@@ -30,6 +32,10 @@ function clicarResposta(respostaClicada){
             for(let i=0; i<respostas.length;i++){
                 respostas[i].classList.add("resposta-nao-clicada");
                 respostas[i].classList.add("pg-qz-resposta-errada");
+
+                if(respostas[i].querySelector(".resposta-certa").innerHTML == "true"){
+                    respostaCorreta = respostas[i];
+                }
             }
             respostaClicada.classList.toggle("resposta-nao-clicada");
             respostaClicada.classList.toggle("resposta-clicada");
@@ -71,7 +77,7 @@ function proximaPergunta(){
     let quantidadePerguntas = containerPerguntas.length-1;
 
     if (contadorPergunta === quantidadePerguntas){
-        alert("finalizado");
+        quizzFinalizado();
     }else{
 
         contadorPergunta+=1;
@@ -167,4 +173,81 @@ function adicionaPerguntas(quizzClicado){
     document.body.scrollTop = document.documentElement.scrollTop = 0;
 
 
+}
+
+
+function quizzFinalizado(){
+    let totalPerguntas = quizzClicado.questions.length;
+    let resultado;
+    let level = 0;
+
+    resultado = Math.round(acertos/totalPerguntas*100);
+    console.log("Resultado: " + resultado);
+
+    for(i=0;i<quizzClicado.levels.length;i++){
+        if(resultado>quizzClicado.levels[i].minValue){
+            level=i;
+        }
+    }
+
+    
+
+    console.log("Level: " + level);
+
+    let image = quizzClicado.levels[level].image;
+    let text = quizzClicado.levels[level].text;
+    let title = quizzClicado.levels[level].title;
+
+
+     document.querySelector(".pagina-quizz").innerHTML += `
+     <div class="finalizacao-quizz">
+     <div class="finalizacao-quizz-container">
+     <div class="finalizacao-quizz-titulo">
+         ${resultado}% de acerto: ${title}
+     </div>
+     <div class="finalizacao-quizz-conteudo">
+         <img src="${image}" alt="">
+         <div class="finalizacao-quiz-texto">
+             ${text}
+         </div>
+     </div>
+     </div>
+     <div class="finalizacao-quizz-botao-reiniciar" onClick="reiniciarQuizz()">
+         Reiniciar Quizz
+     </div>
+     <div class="finalizacao-quizz-botao-voltar-home" onClick="voltarHome()">
+         Voltar Home
+     </div>
+    </div>
+     `
+
+    let finalizacaoQuizz = document.querySelector(".finalizacao-quizz-container");
+    finalizacaoQuizz.scrollIntoView();
+}
+
+function zerarQuizz(){
+    containerPerguntas = [];
+    containerSelecionado = null;
+    containerClicado = null;
+    respostaSelecionada = null;
+    contadorPergunta = 0;
+    acertos = 0;
+    erros = 0;
+}
+
+function reiniciarQuizz(){
+    zerarQuizz();
+    carregarQuizz(quizzClicado);
+}
+
+function voltarHome(){
+    quizzClicado = null;
+    zerarQuizz();
+
+    document.querySelector(".criacao-quizz-chamada").classList.toggle("none");
+    document.querySelector(".todos-quizzes").classList.toggle("none");
+
+    document.querySelector(".pagina-quizz").classList.toggle("none");
+
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
 }
