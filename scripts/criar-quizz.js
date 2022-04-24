@@ -14,6 +14,7 @@ let tituloQuizz;
 let imgQuizz;
 
 let questions = [];
+let levels = [];
 
 /* LIBERA TELA CRIAR QUIZZ */
 function criarQuizz() {
@@ -249,27 +250,27 @@ function pegarPerguntas() {
     let inputs = pergunta.querySelectorAll("input");
 
     let answer = {
-      text: '',
-      image: '',
-      isCorrectAnswer: false
+      text: "",
+      image: "",
+      isCorrectAnswer: false,
     };
 
     let answer2 = {
-      text: '',
-      image: '',
-      isCorrectAnswer: false
+      text: "",
+      image: "",
+      isCorrectAnswer: false,
     };
 
     let answer3 = {
-      text: '',
-      image: '',
-      isCorrectAnswer: false
+      text: "",
+      image: "",
+      isCorrectAnswer: false,
     };
 
     let answer4 = {
-      text: '',
-      image: '',
-      isCorrectAnswer: false
+      text: "",
+      image: "",
+      isCorrectAnswer: false,
     };
 
     let answers = [];
@@ -277,7 +278,7 @@ function pegarPerguntas() {
     let question = {
       title: "",
       color: "",
-      answers
+      answers,
     };
 
     question.title = inputs[0].value;
@@ -292,12 +293,12 @@ function pegarPerguntas() {
     answer2.image = inputs[5].value;
     answers.push(answer2);
 
-    if (inputs[6].value !== '') {
+    if (inputs[6].value !== "") {
       answer3.text = inputs[6].value;
       answer3.image = inputs[7].value;
       answers.push(answer3);
     }
-    if (inputs[8].value !== '') {
+    if (inputs[8].value !== "") {
       answer4.text = inputs[8].value;
       answer4.image = inputs[9].value;
       answers.push(answer4);
@@ -307,12 +308,35 @@ function pegarPerguntas() {
   }
 }
 
+function pegarNiveis() {
+  let niveis = document.querySelectorAll(".nivel");
+  for (let i = 0; i < niveis.length; i++) {
+    let nivel = niveis[i];
+    let inputs = nivel.querySelectorAll("input");
+
+    let level = {
+      title: "",
+      image: "",
+      text: "",
+      minValue: 0,
+    };
+
+    level.title = inputs[0].value;
+    level.image = inputs[2].value;
+    level.text = inputs[3].value;
+    level.minValue = inputs[1].value;
+
+    levels.push(level);
+  }
+}
+
 function verificarCamposNivel() {
   let tituloNivel = verificaTamanhoTextos(".texto-titulo-nivel", 10);
   let porcentagemNivel = verificaPorcentagemNiveis();
   let imgUrlNivel = verificaImgs(".url-img-nivel");
   let descricaoNivel = verificaTamanhoTextos(".descricao-nivel", 30);
   pegarPerguntas();
+  pegarNiveis();
 
   /*  */
 
@@ -320,20 +344,7 @@ function verificarCamposNivel() {
     title: tituloQuizz,
     image: imgQuizz,
     questions,
-    levels: [
-      {
-        title: "Título do nível 1",
-        image: "https://http.cat/411.jpg",
-        text: "Descrição do nível 1",
-        minValue: 0,
-      },
-      {
-        title: "Título do nível 2",
-        image: "https://http.cat/412.jpg",
-        text: "Descrição do nível 2",
-        minValue: 50,
-      },
-    ],
+    levels,
   };
 
   /*  */
