@@ -3,6 +3,7 @@ let telaCriacao = document.querySelector(".criacao-quizz");
 let telaInformacoesBasicas = document.querySelector(".informacoes-basicas");
 let telaCadastroPerguntas = document.querySelector(".perguntas");
 let telaCadastroNiveis = document.querySelector(".niveis");
+let telaSucessoQuizz = document.querySelector(".sucesso-quizz")
 
 let todosQuizzes = document.querySelector(".todos-quizzes");
 
@@ -347,9 +348,32 @@ function verificarCamposNivel() {
     levels,
   };
 
-  /*  */
+ /*  function voltarHome() {
+    telaSucessoQuizz.classList.add("none");
+    telaInformacoesBasicas.classList.remove("none");
+    telaCriacao.classList.add("none");
+    telaChamada.classList.remove("none");
+    todosQuizzes.classList.remove("none");
+  } */
+
+  function sucessoQuizz(response) {
+    telaCadastroNiveis.classList.add("none");
+    telaSucessoQuizz.classList.remove("none");
+
+    let titulo = telaSucessoQuizz.querySelector('.sucesso-quizz-titulo');
+    let img = telaSucessoQuizz.querySelector('img');
+
+    titulo.innerHTML = tituloQuizz;
+    img.setAttribute('src', imgQuizz);
+
+    console.log(response.data.id)
+  }
 
   if (tituloNivel && porcentagemNivel && imgUrlNivel && descricaoNivel) {
+    let promise = axios.post('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes', quizz);
+
+    promise.then(sucessoQuizz);
+
     console.log(quizz);
   } else {
     alert("Preencha os dados corretamente!");
