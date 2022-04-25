@@ -18,6 +18,7 @@ let imgQuizz;
 let questions = [];
 let levels = [];
 
+
 let quizzesId = JSON.parse(localStorage.getItem('id'));
 
 let sucessoQuizzId;
@@ -215,6 +216,11 @@ function verificarCamposPergunta() {
     telaCadastroNiveis.classList.remove("none");
     cadastroNiveis();
   } else {
+    console.log("textoPerguntaValido" + textoPerguntaValido);
+    console.log("corValida" + corValida);
+    console.log("respostaValida" + respostaValida);
+    console.log("respostasIncorretasOpcionais" + respostasIncorretasOpcionais);
+    console.log("imgObrigatoriasValidas" + imgObrigatoriasValidas);
     alert("Preencha os dados corretamente!");
   }
 }
@@ -355,6 +361,8 @@ function verificarCamposNivel() {
   };
 
   function sucessoQuizz(response) {
+    localStorage.setItem('id', '[]');
+
     telaCadastroNiveis.classList.add("none");
     telaSucessoQuizz.classList.remove("none");
 

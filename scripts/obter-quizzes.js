@@ -33,6 +33,13 @@ function carregarTodosQuizzes(todosOsQuizzes){
 
 }
 
+function carregarQuizzesUsuario(){
+    let vetorQuizzes = localStorage.getItem("id");
+    vetorQuizzes = JSON.parse(vetorQuizzes);
+
+    console.log(vetorQuizzes);
+}
+
 function carregarUnicoQuizz(quizzUnico){
     quizzUnico = quizzUnico.data;
     console.log(quizzUnico);
@@ -55,5 +62,6 @@ function clicarNoQuizz(quizzClicado){
 }
 
 buscarTodosQuizzes();
+carregarQuizzesUsuario();
 //buscarApenasUmQuizz(8107);
 //carregarTodosQuizzes();

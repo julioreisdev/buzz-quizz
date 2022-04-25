@@ -190,12 +190,10 @@ function quizzFinalizado(){
     console.log("Resultado: " + resultado);
 
     for(i=0;i<quizzClicado.levels.length;i++){
-        if(resultado>quizzClicado.levels[i].minValue){
+        if(resultado>=quizzClicado.levels[i].minValue){
             level=i;
         }
     }
-
-    
 
     console.log("Level: " + level);
 
