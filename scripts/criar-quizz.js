@@ -17,6 +17,8 @@ let imgQuizz;
 let questions = [];
 let levels = [];
 
+let quizzesId = JSON.parse(localStorage.getItem('id'));
+
 let sucessoQuizzId;
 
 /* LIBERA TELA CRIAR QUIZZ */
@@ -350,14 +352,6 @@ function verificarCamposNivel() {
     levels,
   };
 
- /*  function voltarHome() {
-    telaSucessoQuizz.classList.add("none");
-    telaInformacoesBasicas.classList.remove("none");
-    telaCriacao.classList.add("none");
-    telaChamada.classList.remove("none");
-    todosQuizzes.classList.remove("none");
-  } */
-
   function sucessoQuizz(response) {
     telaCadastroNiveis.classList.add("none");
     telaSucessoQuizz.classList.remove("none");
@@ -368,7 +362,11 @@ function verificarCamposNivel() {
     titulo.innerHTML = tituloQuizz;
     img.setAttribute('src', imgQuizz);
 
-    console.log(response.data.id)
+    console.log(response.data.id);
+
+    quizzesId.push(response.data.id);
+    localStorage.setItem('id', JSON.stringify(quizzesId));
+
     sucessoQuizzId = response.data.id;
   }
 
