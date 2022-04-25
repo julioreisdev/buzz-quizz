@@ -246,13 +246,11 @@ function reiniciarQuizz(){
 }
 
 function voltarHome(){
-    quizzClicado = null;
-    zerarQuizz();
-
-    document.querySelector(".criacao-quizz-chamada").classList.toggle("none");
-    document.querySelector(".todos-quizzes").classList.toggle("none");
-
-    document.querySelector(".pagina-quizz").classList.toggle("none");
-
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    // quizzClicado = null;
+    // zerarQuizz();
+    // document.querySelector(".criacao-quizz-chamada").classList.toggle("none");
+    // document.querySelector(".todos-quizzes").classList.toggle("none");
+    // document.querySelector(".pagina-quizz").classList.toggle("none");
+    // document.body.scrollTop = document.documentElement.scrollTop = 0;
+    reload();
 }

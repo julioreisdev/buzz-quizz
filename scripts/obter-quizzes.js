@@ -3,13 +3,13 @@ let quizzUnico;
 
 
 function buscarTodosQuizzes(){
-    promise = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
+    promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes");
     promise.then(carregarTodosQuizzes);
     promise.catch(carregarQuizzesErro);
 }
 
 function buscarApenasUmQuizz(idQuizz){
-    promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idQuizz}`);
+    promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${idQuizz}`);
     promise.then(carregarUnicoQuizz);
     promise.catch(carregarQuizzesErro);
 }

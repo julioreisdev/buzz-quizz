@@ -17,6 +17,8 @@ let imgQuizz;
 let questions = [];
 let levels = [];
 
+let sucessoQuizzId;
+
 /* LIBERA TELA CRIAR QUIZZ */
 function criarQuizz() {
   telaChamada.classList.add("none");
@@ -367,6 +369,7 @@ function verificarCamposNivel() {
     img.setAttribute('src', imgQuizz);
 
     console.log(response.data.id)
+    sucessoQuizzId = response.data.id;
   }
 
   if (tituloNivel && porcentagemNivel && imgUrlNivel && descricaoNivel) {
@@ -385,3 +388,12 @@ let botaoSubmit = document.querySelector(".botao-submit");
 botaoSubmit.addEventListener("click", function (event) {
   event.preventDefault();
 });
+
+function carregaQuizzSucesso(){
+  zerarQuizz();
+  buscarApenasUmQuizz(sucessoQuizzId);
+
+  document.querySelector(".criacao-quizz").classList.toggle("none");
+  document.querySelector(".pagina-quizz").classList.toggle("none");
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
+}

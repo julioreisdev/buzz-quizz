@@ -189,6 +189,8 @@
     font-weight: 700;
     font-size: 19px;
     line-height: 25px;
+    word-break: break-all;
+    word-wrap: break-word;
 }
 
 .finalizacao-quizz-botao-reiniciar{
@@ -214,6 +216,10 @@
     border-radius: 15px;
 }
 
+.finalizacao-quizz-botao-reiniciar:hover{
+    cursor: pointer;
+}
+
 .finalizacao-quizz-botao-voltar-home{
     margin-top: 20px;
     margin-bottom: 40px;
@@ -236,6 +242,10 @@
     color: #818181;
     background: white;
     border-radius: 15px;
+}
+
+.finalizacao-quizz-botao-voltar-home:hover{
+    cursor: pointer;
 }
 
 
