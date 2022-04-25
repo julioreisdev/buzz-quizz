@@ -1,3 +1,20 @@
+.criacao-quizz-chamada-simples {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.criacao-quizz-chamada-simples p {
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.criacao-quizz-chamada-simples ion-icon {
+  font-size: 1.5rem;
+  color: #ec362d;
+}
+
 .criacao-quizz-chamada {
   width: 80%;
   margin-top: 140px;
@@ -180,6 +197,11 @@
 /*  */
 
 @media (max-width: 1100px) {
+  .criacao-quizz-chamada-simples {
+    width: 90%;
+    justify-content: space-between;
+  }
+
   .criacao-quizz-chamada {
     width: 90%;
   }

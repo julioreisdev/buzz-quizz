@@ -28,6 +28,10 @@
         </a>
     </header>
     <main>
+        <div class="criacao-quizz-chamada-simples">
+            <p>Seus Quizzes</p>
+            <ion-icon onclick="criarQuizz()" name="add-circle"></ion-icon>
+        </div>
         <div class="criacao-quizz-chamada">
             <p>Você não criou nenhum quizz ainda :(</p>
             <a href="#" onclick="criarQuizz()">Criar Quizz</a>
@@ -35,53 +39,55 @@
         <div class="todos-quizzes">
             <p>Todos os Quizzes</p>
             <div class="lista-quizzes-todos">
-            <div class="quizz" onclick="clicarNoQuizz(this)">
-                <img src="https://ichef.bbci.co.uk/news/640/cpsprodpb/17E63/production/_108519879_bda5edc9-89cf-42e2-b959-40f4c40a49b2.jpg" alt="";">
-                <span class="texto-quizz">alooooooooooooooooooo</span>
-            </div>
+                <div class="quizz" onclick="clicarNoQuizz(this)">
+                    <img src="https://ichef.bbci.co.uk/news/640/cpsprodpb/17E63/production/_108519879_bda5edc9-89cf-42e2-b959-40f4c40a49b2.jpg"
+                        alt="" ;">
+                    <span class="texto-quizz">alooooooooooooooooooo</span>
+                </div>
             </div>
         </div>
         <div class="pagina-quizz none">
             <div class="banner-quizz">
-                <img src="https://ichef.bbci.co.uk/news/640/cpsprodpb/17E63/production/_108519879_bda5edc9-89cf-42e2-b959-40f4c40a49b2.jpg" alt="">
+                <img src="https://ichef.bbci.co.uk/news/640/cpsprodpb/17E63/production/_108519879_bda5edc9-89cf-42e2-b959-40f4c40a49b2.jpg"
+                    alt="">
                 <span class="pagina-quizz-titulo">Titulo do Quizz</span>
             </div>
             <div class="pg-qz-container-pergunta">
                 <div class="pg-qz-pergunta">Pergunta 1</div>
                 <div class="pg-qz-respostas">
-                    
-                        <div class="pg-qz-resposta" onclick="clicarResposta(this)">
-                            <img src="https://http.cat/412.jpg" alt="">
-                            <div class="pg-qz-resposta-titulo">Resposta 1</div>
-                        </div>
-                        <div class="pg-qz-resposta">
-                            <img src="https://http.cat/412.jpg" alt="">
-                            <div class="pg-qz-resposta-titulo">Resposta 2</div>
-                        </div>
-                    
-                    
-                        <div class="pg-qz-resposta">
-                            <img src="https://http.cat/412.jpg" alt="">
-                            <div class="pg-qz-resposta-titulo">Resposta 3</div>
-                        </div>
-                        <div class="pg-qz-resposta">
-                            <img src="https://http.cat/412.jpg" alt="">
-                            <div class="pg-qz-resposta-titulo">Resposta 4</div>
-                        </div>
-                    
+
+                    <div class="pg-qz-resposta" onclick="clicarResposta(this)">
+                        <img src="https://http.cat/412.jpg" alt="">
+                        <div class="pg-qz-resposta-titulo">Resposta 1</div>
+                    </div>
+                    <div class="pg-qz-resposta">
+                        <img src="https://http.cat/412.jpg" alt="">
+                        <div class="pg-qz-resposta-titulo">Resposta 2</div>
+                    </div>
+
+
+                    <div class="pg-qz-resposta">
+                        <img src="https://http.cat/412.jpg" alt="">
+                        <div class="pg-qz-resposta-titulo">Resposta 3</div>
+                    </div>
+                    <div class="pg-qz-resposta">
+                        <img src="https://http.cat/412.jpg" alt="">
+                        <div class="pg-qz-resposta-titulo">Resposta 4</div>
+                    </div>
+
                 </div>
-            </div> 
+            </div>
             <div class="finalizacao-quizz">
                 <div class="finalizacao-quizz-container">
-                <div class="finalizacao-quizz-titulo">
-                    TITULO FINALIZACAO
-                </div>
-                <div class="finalizacao-quizz-conteudo">
-                    <img src="https://http.cat/412.jpg" alt="">
-                    <div class="finalizacao-quiz-texto">
-                        TExto texto texto
+                    <div class="finalizacao-quizz-titulo">
+                        TITULO FINALIZACAO
                     </div>
-                </div>
+                    <div class="finalizacao-quizz-conteudo">
+                        <img src="https://http.cat/412.jpg" alt="">
+                        <div class="finalizacao-quiz-texto">
+                            TExto texto texto
+                        </div>
+                    </div>
                 </div>
                 <div class="finalizacao-quizz-botao-reiniciar">
                     Reiniciar Quizz
@@ -99,7 +105,8 @@
                     <input class="quizz-img-url" type="url" placeholder="URL da imagem do seu quizz">
                     <input class="quizz-quatidade-perguntas" type="number"
                         placeholder="Quantidade de perguntas do quizz(mín: 3)">
-                    <input class="quizz-quantidade-niveis" type="number" placeholder="Quantidade de níveis do quizz(mín: 2)">
+                    <input class="quizz-quantidade-niveis" type="number"
+                        placeholder="Quantidade de níveis do quizz(mín: 2)">
                     <a onclick="verificaInformacoesBasicas()" class="criacao-input-submit botao-submit">Prosseguir para
                         criar perguntas</a>
                 </form>
@@ -127,6 +134,8 @@
     </main>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/criar-quizz.js"></script>
     <script src="scripts/obter-quizzes.js"></script>

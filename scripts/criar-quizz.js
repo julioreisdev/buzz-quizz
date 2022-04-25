@@ -1,3 +1,4 @@
+let telaChamadaSimples = document.querySelector('.criacao-quizz-chamada-simples');
 let telaChamada = document.querySelector(".criacao-quizz-chamada");
 let telaCriacao = document.querySelector(".criacao-quizz");
 let telaInformacoesBasicas = document.querySelector(".informacoes-basicas");
@@ -23,6 +24,7 @@ let sucessoQuizzId;
 
 /* LIBERA TELA CRIAR QUIZZ */
 function criarQuizz() {
+  telaChamadaSimples.classList.add("none");
   telaChamada.classList.add("none");
   todosQuizzes.classList.add("none");
   telaCriacao.classList.remove("none");
