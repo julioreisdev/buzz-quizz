@@ -40,6 +40,7 @@ function filtraQuizzesUsuario(todosOsQuizzes, vetorQuizzesUsuario){
         for(let j=0;j<vetorQuizzesUsuario.length;j++){
             if (todosOsQuizzes[i].id === vetorQuizzesUsuario[j]) {
                 objetoQuizzesUsuario.push(todosOsQuizzes[i]);
+                document.querySelector('.criacao-quizz-chamada-simples').classList.remove('none');
                 }
         }
     }
