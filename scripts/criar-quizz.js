@@ -1,10 +1,12 @@
-let telaChamadaSimples = document.querySelector('.criacao-quizz-chamada-simples');
+let telaChamadaSimples = document.querySelector(
+  ".criacao-quizz-chamada-simples"
+);
 let telaChamada = document.querySelector(".criacao-quizz-chamada");
 let telaCriacao = document.querySelector(".criacao-quizz");
 let telaInformacoesBasicas = document.querySelector(".informacoes-basicas");
 let telaCadastroPerguntas = document.querySelector(".perguntas");
 let telaCadastroNiveis = document.querySelector(".niveis");
-let telaSucessoQuizz = document.querySelector(".sucesso-quizz")
+let telaSucessoQuizz = document.querySelector(".sucesso-quizz");
 
 let todosQuizzes = document.querySelector(".todos-quizzes");
 
@@ -18,8 +20,7 @@ let imgQuizz;
 let questions = [];
 let levels = [];
 
-
-let quizzesId = JSON.parse(localStorage.getItem('id'));
+let quizzesId = JSON.parse(localStorage.getItem("id"));
 
 let sucessoQuizzId;
 
@@ -348,8 +349,8 @@ function verificarCamposNivel() {
   let porcentagemNivel = verificaPorcentagemNiveis();
   let imgUrlNivel = verificaImgs(".url-img-nivel");
   let descricaoNivel = verificaTamanhoTextos(".descricao-nivel", 30);
-  pegarPerguntas();
-  pegarNiveis();
+  /* pegarPerguntas();
+  pegarNiveis(); */
 
   /*  */
 
@@ -361,27 +362,32 @@ function verificarCamposNivel() {
   };
 
   function sucessoQuizz(response) {
-    localStorage.setItem('id', '[]');
+    localStorage.setItem("id", "[]");
 
     telaCadastroNiveis.classList.add("none");
     telaSucessoQuizz.classList.remove("none");
 
-    let titulo = telaSucessoQuizz.querySelector('.sucesso-quizz-titulo');
-    let img = telaSucessoQuizz.querySelector('img');
+    let titulo = telaSucessoQuizz.querySelector(".sucesso-quizz-titulo");
+    let img = telaSucessoQuizz.querySelector("img");
 
     titulo.innerHTML = tituloQuizz;
-    img.setAttribute('src', imgQuizz);
+    img.setAttribute("src", imgQuizz);
 
     console.log(response.data.id);
 
     quizzesId.push(response.data.id);
-    localStorage.setItem('id', JSON.stringify(quizzesId));
+    localStorage.setItem("id", JSON.stringify(quizzesId));
 
     sucessoQuizzId = response.data.id;
   }
 
   if (tituloNivel && porcentagemNivel && imgUrlNivel && descricaoNivel) {
-    let promise = axios.post('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes', quizz);
+    pegarPerguntas();
+    pegarNiveis();
+    let promise = axios.post(
+      "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes",
+      quizz
+    );
 
     promise.then(sucessoQuizz);
 
@@ -397,7 +403,7 @@ botaoSubmit.addEventListener("click", function (event) {
   event.preventDefault();
 });
 
-function carregaQuizzSucesso(){
+function carregaQuizzSucesso() {
   zerarQuizz();
   buscarApenasUmQuizz(sucessoQuizzId);
 
