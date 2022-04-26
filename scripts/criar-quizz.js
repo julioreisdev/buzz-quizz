@@ -7,6 +7,7 @@ let telaInformacoesBasicas = document.querySelector(".informacoes-basicas");
 let telaCadastroPerguntas = document.querySelector(".perguntas");
 let telaCadastroNiveis = document.querySelector(".niveis");
 let telaSucessoQuizz = document.querySelector(".sucesso-quizz");
+let telaQuizzesUsuario = document.querySelector(".quizzes-usuario");
 
 let todosQuizzes = document.querySelector(".todos-quizzes");
 
@@ -31,6 +32,7 @@ function criarQuizz() {
   telaChamadaSimples.classList.add("none");
   telaChamada.classList.add("none");
   todosQuizzes.classList.add("none");
+  telaCriacao.classList.add("none");
   telaCriacao.classList.remove("none");
 }
 
