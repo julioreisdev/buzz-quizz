@@ -32,8 +32,9 @@ function criarQuizz() {
   telaChamadaSimples.classList.add("none");
   telaChamada.classList.add("none");
   todosQuizzes.classList.add("none");
-  telaCriacao.classList.add("none");
+  telaQuizzesUsuario.classList.add("none");
   telaCriacao.classList.remove("none");
+  
 }
 
 /* VERIFICA SE UMA URL É VÁLIDA */
