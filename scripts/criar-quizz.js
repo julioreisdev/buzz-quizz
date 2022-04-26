@@ -19,7 +19,8 @@ let questions = [];
 let levels = [];
 
 
-let quizzesId = JSON.parse(localStorage.getItem('id'));
+//let quizzesId = JSON.parse(localStorage.getItem('id'));
+let quizzesId = [];
 
 let sucessoQuizzId;
 
@@ -374,6 +375,7 @@ function verificarCamposNivel() {
 
     console.log(response.data.id);
 
+    
     quizzesId.push(response.data.id);
     localStorage.setItem('id', JSON.stringify(quizzesId));
 
