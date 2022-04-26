@@ -77,7 +77,7 @@ function carregarQuizzesUsuario(todosOsQuizzes){
             }
         }
     }else{
-        document.querySelector(".criacao-quizz-chamada-simples").classList.toggle("none");
+        document.querySelector(".criacao-quizz-chamada-simples").classList.add("none");
     }
 }
 
