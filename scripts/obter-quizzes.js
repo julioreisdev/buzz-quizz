@@ -102,7 +102,7 @@ function clicarNoQuizz(quizzClicado){
     document.querySelector(".pagina-quizz").classList.toggle("none");
 
     document.querySelector(".quizzes-usuario").classList.toggle("none");
-    document.querySelector(".criacao-quizz-chamada-simples").classList.toggle("none");
+    document.querySelector(".criacao-quizz-chamada-simples").classList.add("none");
     
 }
 
