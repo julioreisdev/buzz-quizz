@@ -64,6 +64,30 @@ function verificaInformacoesBasicas() {
   let qtdPerguntasValida = Number(qtdPerguntas) >= 3;
   let qtdNiveisValida = Number(qtdNiveis) >= 2;
 
+  if (tituloValido === false) {
+    document.querySelector('.erro-titulo-quizz').innerHTML = 'Título de pelo menos 20 letras';
+  } else {
+    document.querySelector('.erro-titulo-quizz').innerHTML = '';
+  }
+
+  if (urlValida === false) {
+    document.querySelector('.erro-url-img-quizz').innerHTML = 'Use uma URL válida';
+  } else {
+    document.querySelector('.erro-url-img-quizz').innerHTML = '';
+  }
+
+  if (qtdPerguntasValida === false) {
+    document.querySelector('.erro-qtd-perguntas-quizz').innerHTML = 'Pelo menos 3 perguntas';
+  } else {
+    document.querySelector('.erro-qtd-perguntas-quizz').innerHTML = '';
+  }
+
+  if (qtdNiveisValida === false) {
+    document.querySelector('.erro-qtd-niveis-quizz').innerHTML = 'Pelo menos 2 níveis';
+  } else {
+    document.querySelector('.erro-qtd-niveis-quizz').innerHTML = '';
+  }
+
   if (tituloValido && urlValida && qtdPerguntasValida && qtdNiveisValida) {
     totalPerguntas = Number(qtdPerguntas);
     renderizarCadastroPerguntas();

@@ -196,6 +196,13 @@
 
 /*  */
 
+.erro {
+  color: #ec362d;
+  font-family: monospace;
+}
+
+/*  */
+
 @media (max-width: 1100px) {
   .criacao-quizz-chamada-simples {
     width: 90%;

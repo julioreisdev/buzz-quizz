@@ -107,11 +107,15 @@
                 <h3>Comece pelo começo</h3>
                 <form>
                     <input class="quizz-titulo" type="text" placeholder="Titulo do seu quizz">
+                    <p class="erro erro-titulo-quizz"></p>
                     <input class="quizz-img-url" type="url" placeholder="URL da imagem do seu quizz">
+                    <p class="erro erro-url-img-quizz"></p>
                     <input class="quizz-quatidade-perguntas" type="number"
                         placeholder="Quantidade de perguntas do quizz(mín: 3)">
+                        <p class="erro erro-qtd-perguntas-quizz"></p>
                     <input class="quizz-quantidade-niveis" type="number"
                         placeholder="Quantidade de níveis do quizz(mín: 2)">
+                    <p class="erro erro-qtd-niveis-quizz"></p>
                     <a onclick="verificaInformacoesBasicas()" class="criacao-input-submit botao-submit">Prosseguir para
                         criar perguntas</a>
                 </form>
