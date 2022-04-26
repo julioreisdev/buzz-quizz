@@ -391,7 +391,6 @@ function verificarCamposNivel() {
 
     console.log(response.data.id);
 
-    console.log("quizzesId: " + quizzesId);
     quizzesId.push(response.data.id);
     
     localStorage.setItem("id", JSON.stringify(quizzesId));
