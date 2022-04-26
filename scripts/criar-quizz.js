@@ -21,9 +21,9 @@ let imgQuizz;
 let questions = [];
 let levels = [];
 
-
-//let quizzesId = JSON.parse(localStorage.getItem('id'));
 let quizzesId = [];
+//let quizzesId = JSON.parse(localStorage.getItem('id'));
+
 
 let sucessoQuizzId;
 
@@ -367,7 +367,13 @@ function verificarCamposNivel() {
   };
 
   function sucessoQuizz(response) {
-    localStorage.setItem("id", "[]");
+    //localStorage.setItem("id", "[]");
+    if(localStorage.getItem('id') === null){
+      quizzesId = [];
+      localStorage.setItem("id", "[]");
+    }else{
+      quizzesId = JSON.parse(localStorage.getItem('id'));
+    }
 
     telaCadastroNiveis.classList.add("none");
     telaSucessoQuizz.classList.remove("none");
@@ -380,8 +386,9 @@ function verificarCamposNivel() {
 
     console.log(response.data.id);
 
-    
+    console.log("quizzesId: " + quizzesId);
     quizzesId.push(response.data.id);
+    
     localStorage.setItem("id", JSON.stringify(quizzesId));
 
     sucessoQuizzId = response.data.id;
