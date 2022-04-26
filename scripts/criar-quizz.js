@@ -89,7 +89,7 @@ function renderizarCadastroPerguntas() {
           <input class="img-obrigatoria" type="url" placeholder="URL da imagem 1 (Obrigatório)" required>
           <input class="resposta-incorreta-opcional" type="text" placeholder="Resposta incorreta 2">
           <input class="img-incorreta-opcional" type="url" placeholder="URL da imagem 2">
-          <input class="resposta-incorreta-opcional" type="text" placeholder="Resposta correta 3">
+          <input class="resposta-incorreta-opcional" type="text" placeholder="Resposta incorreta 3">
           <input class="img-incorreta-opcional" type="url" placeholder="URL da imagem 3">
       </div>
     </div>
