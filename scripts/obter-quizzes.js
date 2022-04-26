@@ -53,23 +53,30 @@ function carregarQuizzesUsuario(todosOsQuizzes){
     vetorQuizzesUsuario = JSON.parse(vetorQuizzesUsuario);
     listaQuizzesUsuario.innerHTML = "";
 
-    if(vetorQuizzesUsuario.length > 0){
-        document.querySelector(".criacao-quizz-chamada").classList.add("none");
-        let quizzesUsuario = filtraQuizzesUsuario(todosOsQuizzes, vetorQuizzesUsuario);
-        quizzesUsuario.shift();
-        console.log(quizzesUsuario);
+
+    if(vetorQuizzesUsuario !== null )
+    {
+        if(vetorQuizzesUsuario.length > 0){
+            document.querySelector(".criacao-quizz-chamada-simples").classList.remove("none");
+            document.querySelector(".criacao-quizz-chamada").classList.add("none");
+            let quizzesUsuario = filtraQuizzesUsuario(todosOsQuizzes, vetorQuizzesUsuario);
+            quizzesUsuario.shift();
+            console.log(quizzesUsuario);
 
 
-        for(let i=0; i<quizzesUsuario.length; i++)
-        {
-            console.log(i);
-            listaQuizzesUsuario.innerHTML += `
-        <div class="quizz" onclick="clicarNoQuizz(this)"> 
-            <img src="${quizzesUsuario[i].image}" alt="">
-            <div class="quizz-id">${quizzesUsuario[i].id}</div>
-            <div class="texto-quizz">${quizzesUsuario[i].title}</div> 
-        </div>`
+            for(let i=0; i<quizzesUsuario.length; i++)
+            {
+                console.log(i);
+                listaQuizzesUsuario.innerHTML += `
+            <div class="quizz" onclick="clicarNoQuizz(this)"> 
+                <img src="${quizzesUsuario[i].image}" alt="">
+                <div class="quizz-id">${quizzesUsuario[i].id}</div>
+                <div class="texto-quizz">${quizzesUsuario[i].title}</div> 
+            </div>`
+            }
         }
+    }else{
+        document.querySelector(".criacao-quizz-chamada-simples").classList.toggle("none");
     }
 }
 
