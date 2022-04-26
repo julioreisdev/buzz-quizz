@@ -21,7 +21,6 @@ let imgQuizz;
 let questions = [];
 let levels = [];
 
-
 //let quizzesId = JSON.parse(localStorage.getItem('id'));
 let quizzesId = [];
 
@@ -34,7 +33,6 @@ function criarQuizz() {
   todosQuizzes.classList.add("none");
   telaQuizzesUsuario.classList.add("none");
   telaCriacao.classList.remove("none");
-  
 }
 
 /* VERIFICA SE UMA URL É VÁLIDA */
@@ -220,6 +218,7 @@ function verificarCamposPergunta() {
   ) {
     telaCadastroPerguntas.classList.add("none");
     telaCadastroNiveis.classList.remove("none");
+    pegarPerguntas();
     cadastroNiveis();
   } else {
     console.log("textoPerguntaValido" + textoPerguntaValido);
@@ -245,6 +244,11 @@ function verificaPorcentagemNiveis() {
   let porcentagens = document.querySelectorAll(".porcentagem-nivel");
   let nivelZero = false;
   for (let i = 0; i < porcentagens.length; i++) {
+
+    if (porcentagens[i].value === '') {
+      return false;
+    }
+
     let porcentagem = Number(porcentagens[i].value);
     console.log(porcentagem);
     if (porcentagem < 0 || porcentagem > 100) {
@@ -380,7 +384,6 @@ function verificarCamposNivel() {
 
     console.log(response.data.id);
 
-    
     quizzesId.push(response.data.id);
     localStorage.setItem("id", JSON.stringify(quizzesId));
 
@@ -388,7 +391,6 @@ function verificarCamposNivel() {
   }
 
   if (tituloNivel && porcentagemNivel && imgUrlNivel && descricaoNivel) {
-    pegarPerguntas();
     pegarNiveis();
     let promise = axios.post(
       "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes",
