@@ -3,6 +3,17 @@
     margin-top: 80px;
 }
 
+.quizzes-usuario{
+    width: 80%;
+}
+
+.lista-quizzes-usuario{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    justify-content: space-between;  
+}
+
 .lista-quizzes-todos{
     display: flex;
     flex-wrap: wrap;

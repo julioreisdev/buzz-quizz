@@ -38,3 +38,7 @@ header h1 {
 header h1:before {
     content: "BuzzQuizz";
 }
+
+b{
+    font-weight: bold;
+}
